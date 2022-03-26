@@ -75,7 +75,7 @@ class AdminOrderController extends Controller
 //        $order_details_product = OrderDetails::with('product')->where('order_code', $order_code)->get();
 //        dd($order_details);
 //        $detailOrder = Transaction::with('order')->where('tst_order_id',$id)->get();
-////        dd($detailOrder);
+//        dd($detailOrder);
 //        $customer = Order::with('customer')->findOrFail($id);
         $dataView = [
             'detailOrder' => $detailOrder,

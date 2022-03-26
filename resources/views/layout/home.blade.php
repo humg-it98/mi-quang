@@ -29,7 +29,7 @@
     <link href="{{asset('user/teamplate/css/custom.css')}}" rel="stylesheet">
 
     <!-- Blog CSS -->
-    <link href="{{asset('user/teamplate/css/blog.html.css')}}" rel="stylesheet">
+    <link href="{{asset('user/teamplate/css/blog.css')}}" rel="stylesheet">
 
     <!-- Shop CSS -->
     <link href="{{asset('user/teamplate/css/shop.css')}}" rel="stylesheet">
@@ -65,7 +65,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light px-0 py-0">
                 <div id="logo">
-                    <a href="/">
+                    <a href="{{route('home.index')}}">
                         <img src="{{asset('user/teamplate/img/logo0.png')}}" width="170" height="50" alt="" class="logo_normal">
                         <img src="{{asset('user/teamplate/img/logo1.png')}}" width="170" height="50" alt="" class="logo_sticky">
                     </a>
@@ -93,7 +93,7 @@
                         </li>
 
                         <li class="nav-item last-menu-bg ">
-                            <span class="nav-link"><a href="">Đặt bàn</a></span>
+                            <span class="nav-link"><a href="{{route('home.datban.create')}}">Đặt bàn</a></span>
                         </li>
 
                     </ul>

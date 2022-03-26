@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\Admin\LoginSocialController;
 use App\Http\Controllers\Home\HomeBlogController;
+use App\Http\Controllers\Home\HomeBookingOrderController;
 use App\Http\Controllers\Home\HomeCartController;
 use App\Http\Controllers\Home\HomeCheckoutController;
 use App\Http\Controllers\Home\HomeController;
-use App\Http\Controllers\Home\HomeCustomerController;
 use App\Http\Controllers\Home\HomeProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +48,12 @@ Route::prefix('')->name('home.')->group(function () {
     Route::prefix('blog')->name('blog.')->group(function () {
         Route::get('/', [HomeBlogController::class, 'index'])->name('index');
         Route::get('/{id}', [HomeBlogController::class, 'detailsPost'])->name('details');
+
+    });
+
+    Route::prefix('dat-ban')->name('datban.')->group(function () {
+        Route::get('/', [HomeBookingOrderController::class, 'setOrder'])->name('create');
+        Route::post('/', [HomeBookingOrderController::class, 'store'])->name('store');
 
     });
 
