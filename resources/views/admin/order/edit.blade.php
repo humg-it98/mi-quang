@@ -71,15 +71,23 @@
                                 </tr>
                                 </thead>
                                 @if(isset($detailOrder))
+                                    @php
+                                        $i = 0;
+                                        $total = 0;
+                                    @endphp
                                     <tbody>
                                     @foreach($detailOrder as $detailOrder)
+                                        @php
+                                            $subtotal = $detailOrder->od_sale*$detailOrder->od_qty;
+                                            $total+=$subtotal;
+                                        @endphp
                                         <tr>
                                             <td class="text-center">{{$detailOrder->products->id}}</td>
-                                            <td><img src="" alt="IMG" style="width: 100px"></td>
-                                            <td></td>
-                                            <td class="text-end"></td>
-                                            <td class="text-center"></td>
-                                            <td class="text-end">180.000đ</td>
+                                            <td><img src="{{$detailOrder->products->pro_img_path}}" alt="IMG" style="width: 100px"></td>
+                                            <td>{{$detailOrder->products->pro_name }}</td>
+                                            <td class="text-end">{{number_format($detailOrder->od_sale)}}</td>
+                                            <td class="text-center">{{$detailOrder->od_qty}}</td>
+                                            <td class="text-end">{{number_format($detailOrder->od_sale*$detailOrder->od_qty)}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -98,7 +106,7 @@
                                     <tbody>
                                     <tr>
                                         <td><strong>Tổng phụ</strong></td>
-                                        <td class="text-end">180.000đ</td>
+                                        <td class="text-end">{{number_format($total)}} đ</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Phí ship</strong></td>
@@ -107,7 +115,7 @@
                                     <tr>
                                         <td><strong>Thành tiền</strong></td>
                                         <td class="text-end">
-                                            <strong>195.000đ</strong>
+                                            <strong>{{number_format($total+15000)}} đ</strong>
                                         </td>
                                     </tr>
                                     </tbody>

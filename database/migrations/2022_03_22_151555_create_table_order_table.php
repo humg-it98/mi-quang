@@ -15,7 +15,7 @@ class CreateTableOrderTable extends Migration
     {
         Schema::create('Order', function (Blueprint $table) {
             $table->id();
-            $table->integer('od_code')->comment('Ma don hang de tra cuu');
+            $table->string('od_code')->comment('Ma don hang de tra cuu');
             $table->unsignedBigInteger('od_customer_id')->default(0)->index();
             $table->string('od_cus_name');
             $table->string('od_cus_phone');

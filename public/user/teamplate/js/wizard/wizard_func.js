@@ -53,7 +53,7 @@
 			}
 		});
 
-		// Submit loader mask 
+		// Submit loader mask
 		$('form#wrapped').on('submit', function () {
 			var form = $("form#wrapped");
 			form.validate();
@@ -65,9 +65,9 @@
 		$('#DatePicker').datepicker({
 		    showButtonPanel: false,
 		    inline: true,
-		    dateFormat:"mm/dd/yyyy",
+		    dateFormat:"mm/dd-yyyy",
 		    onSelect: function(dateText, inst) { $("#datepicker_field").val(dateText); },
-            // Monday (first day of the week) disabled. Remove these lines 
+            // Monday (first day of the week) disabled. Remove these lines
 		    beforeShowDay: function(date) {
 		        var day = date.getDay();
 		        return [(day != 1), ''];

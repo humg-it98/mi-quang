@@ -275,210 +275,90 @@
                                         <h6 class="project_name fw-bold"> Thông tin đặt bàn mới nhất </h6>
                                     </div>
                                 </div>
+                                @if(isset($booking))
                                 <div class="card-body mem-list">
-                                    <div class="fade show alert-light">
-                                        <div class="toast-header bg-primary text-light">
-                                            <img class="avatar rounded-circle"
-                                                 src="teamplate/admin/assets/images/xs/avatar4.jpg" alt="">
-                                            <div class="flex-fill ms-3 text-truncate">
-                                                <h6 class="d-flex justify-content-between mb-0">
-                                                        <span class="badge alert-primary text-end">
-                                                            Đào Nhật Trung
-                                                        </span>
-                                                </h6>
-                                                <a href="mailto:trungdao9a1@gmail.com">
-                                                    <i class="icofont-email"></i>
-                                                    <span class="ms-1">trungdao9a1@gmail.com</span>
-                                                    <a href=""><i class="icofont-reply"></i></a>
-                                                </a>
-
-                                                <h2>
-                                                    <a href="Tel: +375307021">
-                                                        <i class="icofont-ui-dial-phone"></i>
-                                                        <span class="ms-1">0375307021</span>
-                                                        <i class="icofont-reply"></i>
+                                    @foreach($booking as $booking)
+                                        <div class="fade show alert-light">
+                                            <div class="toast-header bg-primary text-light">
+                                                <img class="avatar rounded-circle"
+                                                     src="{{asset('user/teamplate/img/avatar4.jpg')}}" alt="">
+                                                <div class="flex-fill ms-3 text-truncate">
+                                                    <h6 class="d-flex justify-content-between mb-0">
+                                                            <span class="badge alert-primary text-end">
+                                                               {{$booking->b_name}}
+                                                            </span>
+                                                    </h6>
+                                                    <a href="mailto:{{$booking->b_email}}">
+                                                        <i class="icofont-email"></i>
+                                                        <span class="ms-1">   {{$booking->b_email}}</span>
+                                                        <a href=""><i class="icofont-reply"></i></a>
                                                     </a>
-                                                </h2>
-                                                <div class="text-end">
-                                                    <i class="icofont-clock-time"></i>
-                                                    <span class="ms-1">
-                                                            2022-01-10 20:28:29
-                                                        </span>
+
+                                                    <h2>
+                                                        <a href="Tel:{{$booking->b_phone}}">
+                                                            <i class="icofont-ui-dial-phone"></i>
+                                                            <span class="ms-1">   {{$booking->b_phone}}</span>
+                                                            <i class="icofont-reply"></i>
+                                                        </a>
+                                                    </h2>
+                                                    <div class="text-end">
+                                                        <i class="icofont-clock-time"></i>
+                                                        <span class="ms-1">
+                                                                  {{ date("d/m/Y H:i:s", strtotime($booking->created_at)) }}
+                                                            </span>
+                                                    </div>
                                                 </div>
                                             </div>
+
+                                            <div class="toast-body alert-info">
+                                                <p class="py-2 mb-0 ">
+                                                    <i class="icofont-ui-text-chat"></i>
+                                                    {{$booking->b_note}}
+                                                </p>
+                                                <p class="py-2 mb-0 ">
+                                                    <i class="icofont-people"></i>
+                                                    {{$booking->b_people}} Người
+                                                </p>
+
+                                                <p class="py-2 mb-0 ">
+                                                    <i class="icofont-stopwatch"></i>
+                                                    {{ date("d/m/Y", strtotime($booking->b_date)) }} - {{$booking->b_time}}h
+                                                </p>
+                                            </div>
+
                                         </div>
-
-                                        <div class="toast-body alert-info">
-                                            <p class="py-2 mb-0 ">
-                                                <i class="icofont-ui-text-chat"></i>
-                                                bàn rộng
-                                            </p>
-                                            <p class="py-2 mb-0 ">
-                                                <i class="icofont-people"></i>
-                                                4 Người
-                                            </p>
-
-                                            <p class="py-2 mb-0 ">
-                                                <i class="icofont-stopwatch"></i>
-                                                01/19/20222022 - 10.30
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                    <div class="tikit-info row g-3 align-items-center">
-                                        <div class="col-sm">
-                                            <ul class="d-flex list-unstyled align-items-center flex-wrap">
-                                                <li>
-                                                    <div class="d-flex align-items-center">
-                                                        <div role="alert" class="text-success">
-                                                            <h5 class="alert-link">
-                                                                <i class="icofont-checked"></i>
-                                                                <span class="ms-1">Đã được xử
-                                                                            lý.</span>
-                                                            </h5>
+                                        <div class="tikit-info row g-3 align-items-center">
+                                            <div class="col-sm">
+                                                <ul class="d-flex list-unstyled align-items-center flex-wrap">
+                                                    <li>
+                                                        <div class="d-flex align-items-center">
+                                                            @if($booking->b_status == 1)
+                                                                <div role="alert" class="text-warning">
+                                                                    <i class="icofont-ban"></i>
+                                                                    <a href="" class="alert-link">
+                                                                        <span class="ms-1">Chờ xử lý</span>
+                                                                    </a>
+                                                                </div>
+                                                            @else
+                                                                <div role="alert" class="text-success">
+                                                                    <h5 class="alert-link">
+                                                                        <i class="icofont-checked"></i>
+                                                                        <span class="ms-1">
+                                                                        Đã được xử lý.
+                                                                    </span>
+                                                                    </h5>
+                                                                </div>
+                                                            @endif
                                                         </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <br><br>
-                                    <div class="fade show alert-light">
-                                        <div class="toast-header bg-primary text-light">
-                                            <img class="avatar rounded-circle"
-                                                 src="teamplate/admin/assets/images/xs/avatar4.jpg" alt="">
-                                            <div class="flex-fill ms-3 text-truncate">
-                                                <h6 class="d-flex justify-content-between mb-0">
-                                                        <span class="badge alert-primary text-end">
-                                                            Nguyễn Văn Tèo
-                                                        </span>
-                                                </h6>
-                                                <a href="mailto:teoem@gmail.com">
-                                                    <i class="icofont-email"></i>
-                                                    <span class="ms-1">teoem@gmail.com</span>
-                                                    <a href=""><i class="icofont-reply"></i></a>
-                                                </a>
-
-                                                <h2>
-                                                    <a href="Tel: +982655144">
-                                                        <i class="icofont-ui-dial-phone"></i>
-                                                        <span class="ms-1">0982655144</span>
-                                                        <i class="icofont-reply"></i>
-                                                    </a>
-                                                </h2>
-                                                <div class="text-end">
-                                                    <i class="icofont-clock-time"></i>
-                                                    <span class="ms-1">
-                                                            2021-12-24 05:43:44
-                                                        </span>
-                                                </div>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
-
-                                        <div class="toast-body alert-info">
-                                            <p class="py-2 mb-0 ">
-                                                <i class="icofont-ui-text-chat"></i>
-                                                Cho tôi đặt bàn ở nơi có ảnh sáng tốt. Cảm ơn!
-                                            </p>
-                                            <p class="py-2 mb-0 ">
-                                                <i class="icofont-people"></i>
-                                                4 Người
-                                            </p>
-
-                                            <p class="py-2 mb-0 ">
-                                                <i class="icofont-stopwatch"></i>
-                                                12/24/20212021 - 20.00
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                    <div class="tikit-info row g-3 align-items-center">
-                                        <div class="col-sm">
-                                            <ul class="d-flex list-unstyled align-items-center flex-wrap">
-                                                <li>
-                                                    <div class="d-flex align-items-center">
-                                                        <div role="alert" class="text-success">
-                                                            <h5 class="alert-link">
-                                                                <i class="icofont-checked"></i>
-                                                                <span class="ms-1">Đã được xử
-                                                                            lý.</span>
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <br><br>
-                                    <div class="fade show alert-light">
-                                        <div class="toast-header bg-primary text-light">
-                                            <img class="avatar rounded-circle"
-                                                 src="teamplate/admin/assets/images/xs/avatar4.jpg" alt="">
-                                            <div class="flex-fill ms-3 text-truncate">
-                                                <h6 class="d-flex justify-content-between mb-0">
-                                                        <span class="badge alert-primary text-end">
-                                                            Trung Dao
-                                                        </span>
-                                                </h6>
-                                                <a href="mailto:dntrung.20it6@vku.udn.vn">
-                                                    <i class="icofont-email"></i>
-                                                    <span class="ms-1">dntrung.20it6@vku.udn.vn</span>
-                                                    <a href=""><i class="icofont-reply"></i></a>
-                                                </a>
-
-                                                <h2>
-                                                    <a href="Tel: +2147483647">
-                                                        <i class="icofont-ui-dial-phone"></i>
-                                                        <span class="ms-1">02147483647</span>
-                                                        <i class="icofont-reply"></i>
-                                                    </a>
-                                                </h2>
-                                                <div class="text-end">
-                                                    <i class="icofont-clock-time"></i>
-                                                    <span class="ms-1">
-                                                            2021-12-17 09:39:46
-                                                        </span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="toast-body alert-info">
-                                            <p class="py-2 mb-0 ">
-                                                <i class="icofont-ui-text-chat"></i>
-                                                á
-                                            </p>
-                                            <p class="py-2 mb-0 ">
-                                                <i class="icofont-people"></i>
-                                                2 Người
-                                            </p>
-
-                                            <p class="py-2 mb-0 ">
-                                                <i class="icofont-stopwatch"></i>
-                                                12/24/20212021 - 19.00
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                    <div class="tikit-info row g-3 align-items-center">
-                                        <div class="col-sm">
-                                            <ul class="d-flex list-unstyled align-items-center flex-wrap">
-                                                <li>
-                                                    <div class="d-flex align-items-center">
-                                                        <div role="alert" class="text-success">
-                                                            <h5 class="alert-link">
-                                                                <i class="icofont-checked"></i>
-                                                                <span class="ms-1">Đã được xử
-                                                                            lý.</span>
-                                                            </h5>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <br><br>
+                                        <br><br>
+                                    @endforeach
                                     <!-- timeline item end  -->
                                 </div>
+                                @endif
                             </div> <!-- .card: My Timeline -->
                         </div>
                     </div>
